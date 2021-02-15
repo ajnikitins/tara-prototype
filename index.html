@@ -19,9 +19,13 @@
     }
 
     .boxBeaker {
-      height: 170px;
       width: 155px;
-      border: black 1px solid;
+      height: 170px;
+    }
+
+    .boxPaper {
+      width: 30px;
+      height: 175px;
     }
   </style>
 
@@ -97,23 +101,28 @@
     <div class="col-7">
       <div class="d-flex flex-column justify-content-between align-items-center h-100 w-100">
         <img class="img-fluid w-75" src="./img/phscale.jpg" alt="pH scale">
-        <div class="flex-grow-1 position-relative w-100">
-          <div class="position-absolute bottom-0 start-50 translate-middle w-75">
+        <div class="flex-grow-1 w-75 mb-5">
+          <div class="h-100 d-flex flex-column justify-content-end">
             <div class="d-flex justify-content-around">
-              <div class="boxBeaker"></div>
-              <div class="boxBeaker"></div>
-              <div class="boxBeaker"></div>
+              <div id="boxPaper1" class="boxPaper border border-dark d-none" data-position="0" ondrop="" ondragover="allowDrop(event)"></div>
+              <div id="boxPaper2" class="boxPaper border border-dark d-none" data-position="1" ondrop="" ondragover="allowDrop(event)"></div>
+              <div id="boxPaper3" class="boxPaper border border-dark d-none" data-position="2" ondrop="" ondragover="allowDrop(event)"></div>
+            </div>
+            <div class="d-flex justify-content-around mt-2">
+              <div id="boxBeaker1" class="boxBeaker border border-dark" data-position="0" ondrop="dropBeaker(event)" ondragover="allowDrop(event)"></div>
+              <div id="boxBeaker2" class="boxBeaker border border-dark" data-position="1" ondrop="dropBeaker(event)" ondragover="allowDrop(event)"></div>
+              <div id="boxBeaker3" class="boxBeaker border border-dark" data-position="2" ondrop="dropBeaker(event)" ondragover="allowDrop(event)"></div>
             </div>
           </div>
         </div>
         <div class="inventory">
           <div class="d-flex p-2 h-100 justify-content-around">
-            <img id="beakerX" class="img-fluid" src="./img/beakerX.png" alt="Beaker X">
-            <img id="beakerY" class="img-fluid" src="./img/beakerY.png" alt="Beaker Y">
-            <img id="beakerZ" class="img-fluid" src="./img/beakerZ.png" alt="Beaker Z">
-            <img id="paper1" class="img-fluid" src="./img/paper.png" alt="Paper">
-            <img id="paper2" class="img-fluid" src="./img/paper.png" alt="Paper">
-            <img id="paper3" class="img-fluid" src="./img/paper.png" alt="Paper">
+            <img id="beakerX" class="img-fluid" src="./img/beakerX.png" alt="Beaker X" draggable="true" ondragstart="drag(event)">
+            <img id="beakerY" class="img-fluid" src="./img/beakerY.png" alt="Beaker Y" draggable="true" ondragstart="drag(event)">
+            <img id="beakerZ" class="img-fluid" src="./img/beakerZ.png" alt="Beaker Z" draggable="true" ondragstart="drag(event)">
+            <img id="paper1" class="img-fluid border border-warning" src="./img/paper.png" alt="Paper" draggable="true" ondragstart="drag(event)">
+            <img id="paper2" class="img-fluid border border-warning" src="./img/paper.png" alt="Paper" draggable="true" ondragstart="drag(event)">
+            <img id="paper3" class="img-fluid border border-warning" src="./img/paper.png" alt="Paper" draggable="true" ondragstart="drag(event)">
           </div>
         </div>
       </div>
@@ -122,7 +131,43 @@
 </div>
 
 <script>
+  let currentlyDragged = "";
 
+  const beakerState = [null, null, null];
+
+  function allowDrop(ev) {
+    if (ev.target.classList.contains("boxBeaker") && currentlyDragged.includes("beaker")
+        || ev.target.classList.contains("boxPaper") && currentlyDragged.includes("paper")) {
+      ev.preventDefault();
+    }
+  }
+
+  function drag(ev) {
+    currentlyDragged = ev.target.id;
+    ev.dataTransfer.setData("text", ev.target.id);
+  }
+
+  function dropBeaker(ev) {
+    ev.preventDefault();
+    console.log(ev);
+    const data = ev.dataTransfer.getData("text");
+    const beaker = document.getElementById(data);
+    const box = ev.target;
+
+    beaker.draggable = false;
+    box.classList.remove("border");
+    beakerState[box.dataset.position] = beaker.id;
+    console.log(beakerState);
+
+    ev.target.appendChild(document.getElementById(data));
+
+    if (!beakerState.includes(null)) {
+      const boxes = document.getElementsByClassName("boxPaper");
+      for (let box of boxes) {
+        box.classList.remove("d-none");
+      }
+    }
+  }
 </script>
 <script src="./js/bootstrap.bundle.js"></script>
 </body>
