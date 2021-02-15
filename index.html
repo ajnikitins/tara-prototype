@@ -2,11 +2,128 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" type="text/css" href="./css/bootstrap.css">
+  <style>
+    #headingOne > button::after {
+      content: none;
+    }
+
+    .inventory {
+      width: 80%;
+      height: 20%;
+      background: #ae5618;
+      border: saddlebrown 2px solid;
+      border-radius: 3px;
+    }
+
+    .boxBeaker {
+      height: 170px;
+      width: 155px;
+      border: black 1px solid;
+    }
+  </style>
+
   <title>TARA</title>
-  <link href="css/bootstrap.css">
 </head>
 <body>
+<div class="container-fluid p-4 vh-100">
+  <div class="row h-100">
+    <div class="col-5 overflow-auto">
+      <div class="accordion" id="accordionExample">
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingOne">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" disabled>
+              <strong>Uzdevumi</strong>
+            </button>
+          </h2>
+          <div id="collapseOne" class="accordion-collapse collapse show">
+            <div class="accordion-body">
+              <p>
 
-<script src="js/bootstrap.bundle.js"></script>
+              </p>
+              <nav>
+                <ul class="pagination justify-content-center">
+                  <li class="page-item"><a class="page-link" href="#">Iepriekšējais Uzdevums</a></li>
+                  <li class="page-item"><a class="page-link" href="#">Nākamais Uzdevums</a></li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingTwo">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo">
+              <strong>Teorija</strong>
+            </button>
+          </h2>
+          <div id="collapseTwo" class="accordion-collapse collapse">
+            <div class="accordion-body">
+              <p>
+                Praktiskajam uzdevumam nepieciešamie trauki un vielas: 3 vārglāzītes, 3 šķīdumi X,Y,Z (viens satur no NaOH šķīdumu, otrs CH3COOH, un trešais ir ūdens), univerālindikatora papīrīši.
+              </p>
+              <p>
+                pH ir negatīvais decimāllogaritms no ūdeņraža jonu koncentrācijas. Šo mērvienību lieto, lai noteiktu šķīdumu skābumu vai baziskumu. pH = -lg([H+]).
+              </p>
+              <p>
+                Indikatori ir dažādas organiskas vielas, kas ir spējīgas mainīt krāsu atkarībā no vides pH. Piemēram, šajā darbā izmantotais universālindikators ir dažādu indikatoru (fenolftaleīna, metilsarkanā, bromtimolzilā) maisījums, kas ļauj panākt pH noteikšanu daudz plašākā diapazonā (0-14), nekā ar atsevišķiem indikatoriem. Indikatoru darbības princips - indikators protolīzes dēļ var dažādās vidēs pastāvēt gan molekulārajā, gan jonu formā, kurām ir atšķirīgas krāsas.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingThree">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree">
+              <strong>Jautri fakti</strong>
+            </button>
+          </h2>
+          <div id="collapseThree" class="accordion-collapse collapse">
+            <div class="accordion-body">
+              <ul>
+                <li>Sarkanā kāposta ekstrakts, kas satur antociānu pigmentus, var kalpot kā dabiskais indikators un darbojas līdzīgi kā universālindikators.</li>
+                <li>Šāda vides pH mērīšana ir iespējama tikai kvalitatīviem nolūkiem un ar bezkrāsaniem šķīdumiem, taču daudz precīzākus pH mērījumus var panākt ar instrumentālām metodēm (pH-metriem).</li>
+                <li>pH diapazons 0-14 ir lietojams tikai ūdens šķīdumiem, taču dažādos organiskajos šķīdinātājos (benzolā, dihlormetānā) šī skala ir daudz plašāka, kas ļauj noteikt pH līdz pat -100 līdz 100 vienību robežās.</li>
+                <li>Fluorantimonskābe ir stiprākā superskābe pasaulē (aptuveni 2 * 10^19 reizes stiprāka par 100% H2SO4, pH skalā tas būtu tuvu pie pH=-31)</li>
+                <li>orto-Dietilbenzola dianjons ir šobrīrd zināmā spēcīgākā superbāze pasaulē</li>
+                <li>Šobrīd plaši lietoto konceptu par pH skalu un skābumu/baziskumu ūdens šķīdumiem 1909. gadā izveodijis dāņu ķīmiķis Søren Sørensen (1868-1939)</li>
+                <li>Vissenākais zināmais pH indikators ir no ķērpjiem iegūtstamais lakmuss, ko plaši lietoja jau 14. gadsmintā, novērojot tā dažādās krāsas - skābā vidē sarkans, bāziskā - zils.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-7">
+      <div class="d-flex flex-column justify-content-between align-items-center h-100 w-100">
+        <img class="img-fluid w-75" src="./img/phscale.jpg" alt="pH scale">
+        <div class="flex-grow-1 position-relative w-100">
+          <div class="position-absolute bottom-0 start-50 translate-middle w-75">
+            <div class="d-flex justify-content-around">
+              <div class="boxBeaker"></div>
+              <div class="boxBeaker"></div>
+              <div class="boxBeaker"></div>
+            </div>
+          </div>
+        </div>
+        <div class="inventory">
+          <div class="d-flex p-2 h-100 justify-content-around">
+            <img id="beakerX" class="img-fluid" src="./img/beakerX.png" alt="Beaker X">
+            <img id="beakerY" class="img-fluid" src="./img/beakerY.png" alt="Beaker Y">
+            <img id="beakerZ" class="img-fluid" src="./img/beakerZ.png" alt="Beaker Z">
+            <img id="paper1" class="img-fluid" src="./img/paper.png" alt="Paper">
+            <img id="paper2" class="img-fluid" src="./img/paper.png" alt="Paper">
+            <img id="paper3" class="img-fluid" src="./img/paper.png" alt="Paper">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+
+</script>
+<script src="./js/bootstrap.bundle.js"></script>
 </body>
 </html>
