@@ -4,11 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
+  <link rel="icon" href="./img/logo.jpeg" type="image/x-icon"/>
   <link rel="stylesheet" type="text/css" href="./css/bootstrap.css">
   <style>
-    #headingOne > button::after {
-      content: none;
-    }
 
     .inventory {
       width: 80%;
@@ -75,7 +73,7 @@
     }
   </style>
 
-  <title>TARA</title>
+  <title>TARA.</title>
 </head>
 <body>
 <div class="container-fluid p-4 vh-100">
@@ -85,23 +83,130 @@
     </button>
   </div>
   <div class="row h-100">
-    <div class="col-5 overflow-auto">
+    <div class="col-5 h-100 overflow-auto">
       <div class="accordion" id="accordionExample">
         <div class="accordion-item">
           <h2 class="accordion-header" id="headingOne">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" disabled>
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne">
               <strong>Uzdevumi</strong>
             </button>
           </h2>
           <div id="collapseOne" class="accordion-collapse collapse show">
             <div class="accordion-body">
-              <p>
-
-              </p>
+              <div id="page0" class="">
+                <h2>Uzdevums Nr. 1</h2><br>
+                <p>Sveicināts/-a TARA prototipā!</p>
+                <p>
+                  Šodien centīsimies praktiski apskatīt pH indikatorus un to pielietojumu šķīdumu pH līmeņa noteikšanai.<br>
+                  Iepakojuma kastē atradīsi drošības brilles un cimdus, trīs mērglāzes ar ūdeni, NaOH šķīdumu un CH3COOH šķīdumu, trīs universālindikatora papīrīšus un pH krāsu skalu.<br>
+                </p>
+                <p class="h6"><strong>NB!</strong> Pirms eksperimenta veikšanas uzvelc brilles un cimdus, lai pasargātu sevi no kaitīgu vielu ietekmes.</p>
+                <p>
+                  Tavs pirmais uzdevums ir izkārtot mērglāzes uz galda līdzīgi tam, kā ir attēlots bildē.<br>
+                  <small>(mērglāžu bildes jāpārvelk uz melnajām kastītēm brīvi izvēlētā kārtībā)</small>
+                </p>
+                <p class="text-center"><img class="w-75" src="./img/initial.png" alt="Sākuma izkārtojums"></p>
+                <p>Kad mērglāzes saliktas, droši spied "Nākamais Uzdevums"!</p>
+              </div>
+              <div id="page1" class="d-none">
+                <h2>Uzdevums Nr. 2</h2>
+                <p>Tagad tev būs iespēja novērot indikatorus darbībā.</p>
+                <p>
+                  Paņem indikatora papīrīti, daļēji iemērc to mērglāzē un izvelc to ārā, noliekot to uz papīra salvetes. Uzreiz pamanīsi, ka papīrīša krāsa sāk mainīties.<br>
+                  <small>(papīrīšu bildes jāpārvelk uz melnajām kastītēm brīvi izvēlētā kārtībā)</small>
+                </p>
+                <p>Video demonstrācija:</p>
+                <p class="text-center">
+                  <video width="100%" controls>
+                    <source src="./img/paperDip.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                  </video>
+                </p>
+                <p>Kad visās mērglāzēs ir iemērkts pa indikatora papīrītim, dodies uz nākamo uzdevumu!</p>
+              </div>
+              <div id="page2" class="d-none">
+                <h2>Uzdevums Nr. 3</h2>
+                <p>Palikusi vēl tikai finiša taisne. Tā tik turpināt!</p>
+                <p>Izmantojot pH krāsu skalu, nosaki katra šķīduma pH un izpildi testu!</p>
+                <p class="text-center"><img class="w-50" src="./img/final.jpeg" alt="Final step"> </p>
+                <form class="row mt-5 needs-validation" novalidate>
+                  <h6>1. Uzraksti aptuveno pH katram šķīdumam!</h6>
+                  <div class="input-group mb-3">
+                    <label for="phX" class="input-group-text">X</label>
+                    <input id="phX" type="text" class="form-control">
+                    <label for="phY" class="input-group-text">Y</label>
+                    <input id="phY" type="text" class="form-control">
+                    <label for="phZ" class="input-group-text">Z</label>
+                    <input id="phZ" type="text" class="form-control">
+                  </div>
+                  <h6>2. Katram šķīdumam izvēlies vielas grupu – bāziska, neitrāla vai skāba!</h6>
+                  <div class="input-group mb-3">
+                    <label for="stateX" class="input-group-text">X</label>
+                    <select class="form-select" id="stateX">
+                      <option selected disabled></option>
+                      <option value="0">bāziska</option>
+                      <option value="1">neitrāla</option>
+                      <option value="2">skāba</option>
+                    </select>
+                    <label for="stateY" class="input-group-text">Y</label>
+                    <select class="form-select" id="stateY">
+                      <option selected disabled></option>
+                      <option value="0">bāziska</option>
+                      <option value="1">neitrāla</option>
+                      <option value="2">skāba</option>
+                    </select>
+                    <label for="stateZ" class="input-group-text">Z</label>
+                    <select class="form-select" id="stateZ">
+                      <option selected disabled></option>
+                      <option value="0">bāziska</option>
+                      <option value="1">neitrāla</option>
+                      <option value="2">skāba</option>
+                    </select>
+                  </div>
+                  <h6>3. Katram šķīdumam izvēlies vielu, kuras pH visvairāk atbilst izmērītajam!</h6>
+                  <div class="input-group mb-3">
+                    <label for="substanceX" class="input-group-text">X</label>
+                    <select class="form-select" id="substanceX">
+                      <option selected disabled></option>
+                      <option value="0">NaOH</option>
+                      <option value="1">CH3COOH</option>
+                      <option value="2">H2O</option>
+                    </select>
+                    <label for="substanceY" class="input-group-text">Y</label>
+                    <select class="form-select" id="substanceY">
+                      <option selected disabled></option>
+                      <option value="0">NaOH</option>
+                      <option value="1">CH3COOH</option>
+                      <option value="2">H2O</option>
+                    </select>
+                    <label for="substanceZ" class="input-group-text">Z</label>
+                    <select class="form-select" id="substanceZ">
+                      <option selected disabled></option>
+                      <option value="0">NaOH</option>
+                      <option value="1">CH3COOH</option>
+                      <option value="2">H2O</option>
+                    </select>
+                  </div>
+                  <div class="col-auto">
+                    <h6><label for="drinkChoice">4. Kuru no šīm vielām tu dzertu?</label></h6>
+                    <select class="form-select mb-3" id="drinkChoice">
+                      <option selected disabled></option>
+                      <option value="0">X</option>
+                      <option value="1">Y</option>
+                      <option value="2">Z</option>
+                      <option value="3">Visas</option>
+                      <option value="4">Nevienu</option>
+                    </select>
+                  </div>
+                  <div>
+                    <button class="btn btn-primary" type="submit">Nodot</button>
+                  </div>
+                </form>
+              </div>
               <nav>
                 <ul class="pagination justify-content-center">
-                  <li class="page-item"><a class="page-link" href="#">Iepriekšējais Uzdevums</a></li>
-                  <li class="page-item"><a class="page-link" href="#">Nākamais Uzdevums</a></li>
+                  <li id="buttonPrevPage" class="page-item disabled"><a class="page-link" href="#">Iepriekšējais Uzdevums</a></li>
+                  <li id="buttonNextPage" class="page-item"><a class="page-link" href="#">Nākamais Uzdevums</a></li>
                 </ul>
               </nav>
             </div>
@@ -119,7 +224,8 @@
                 Praktiskajam uzdevumam nepieciešamie trauki un vielas: 3 vārglāzītes, 3 šķīdumi X,Y,Z (viens satur no NaOH šķīdumu, otrs CH3COOH, un trešais ir ūdens), univerālindikatora papīrīši.
               </p>
               <p>
-                pH ir negatīvais decimāllogaritms no ūdeņraža jonu koncentrācijas. Šo mērvienību lieto, lai noteiktu šķīdumu skābumu vai baziskumu. pH = -lg([H+]).
+                pH ir negatīvais decimāllogaritms no ūdeņraža jonu koncentrācijas. Šo mērvienību lieto, lai noteiktu šķīdumu skābumu vai bāziskumu.<br>
+                <var>pH</var> = <var>-lg([H+])</var>
               </p>
               <p>
                 Indikatori ir dažādas organiskas vielas, kas ir spējīgas mainīt krāsu atkarībā no vides pH. Piemēram, šajā darbā izmantotais universālindikators ir dažādu indikatoru (fenolftaleīna, metilsarkanā, bromtimolzilā) maisījums, kas ļauj panākt pH noteikšanu daudz plašākā diapazonā (0-14), nekā ar atsevišķiem indikatoriem. Indikatoru darbības princips - indikators protolīzes dēļ var dažādās vidēs pastāvēt gan molekulārajā, gan jonu formā, kurām ir atšķirīgas krāsas.
@@ -180,11 +286,77 @@
     </div>
   </div>
 </div>
+<script>
+  const buttonNextPage = document.getElementById("buttonNextPage");
+  const buttonPrevPage = document.getElementById("buttonPrevPage");
 
+  const maxPages = 3;
+  let selectedPageNum = 0;
+
+  buttonNextPage.addEventListener("click", (ev) => {
+    ev.preventDefault();
+    restartVideos();
+    nextPage();
+  })
+
+  buttonPrevPage.addEventListener("click", (ev) => {
+    ev.preventDefault();
+    restartVideos();
+    prevPage();
+  })
+
+  function restartVideos() {
+    const videos = document.getElementsByTagName("video");
+    for (let video of videos) {
+      video.pause();
+      video.currentTime = 0;
+    }
+  }
+
+  function nextPage() {
+    if (selectedPageNum < maxPages - 1) {
+      const currentPage = document.getElementById(`page${selectedPageNum}`);
+      const nextPage = document.getElementById(`page${selectedPageNum + 1}`);
+
+      currentPage.classList.toggle("d-none");
+      nextPage.classList.toggle("d-none");
+
+      if (selectedPageNum === 0) {
+        buttonPrevPage.classList.remove("disabled");
+      }
+
+      selectedPageNum++;
+
+      if (selectedPageNum === maxPages - 1) {
+        buttonNextPage.classList.add("disabled");
+      }
+    }
+  }
+
+  function prevPage() {
+    if (selectedPageNum > 0) {
+      const currentPage = document.getElementById(`page${selectedPageNum}`);
+      const prevPage = document.getElementById(`page${selectedPageNum - 1}`);
+
+      currentPage.classList.toggle("d-none");
+      prevPage.classList.toggle("d-none");
+
+      if (selectedPageNum === maxPages - 1) {
+        buttonNextPage.classList.remove("disabled");
+      }
+
+      selectedPageNum--;
+
+      if (selectedPageNum === 0) {
+        buttonPrevPage.classList.add("disabled");
+      }
+    }
+  }
+</script>
 <script>
   let currentlyDragged = "";
 
-  const state = ["", "", ""];
+  const beakerState = ["", "", ""];
 
   function allowDrop(ev) {
     if (ev.target.classList.contains("boxBeaker") && currentlyDragged.includes("beaker")
@@ -206,11 +378,11 @@
 
     beaker.draggable = false;
     box.classList.remove("border");
-    state[box.dataset.position] = beaker.id;
+    beakerState[box.dataset.position] = beaker.id;
 
     box.appendChild(document.getElementById(data));
 
-    if (!state.includes("")) {
+    if (!beakerState.includes("")) {
       const boxes = document.getElementsByClassName("boxPaper");
       for (let box of boxes) {
         box.classList.remove("d-none");
@@ -227,7 +399,7 @@
     paper.draggable = false;
     box.classList.remove("border");
 
-    const beaker = state[box.dataset.position];
+    const beaker = beakerState[box.dataset.position];
     let newPaper = "";
 
     switch (beaker) {
