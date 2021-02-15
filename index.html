@@ -27,12 +27,63 @@
       width: 30px;
       height: 175px;
     }
+
+    .img-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    .refresh {
+      width: 40px;
+      filter: invert(16%) sepia(75%) saturate(7489%) hue-rotate(0deg) brightness(100%) contrast(118%);
+    }
+
+    .dipDown {
+      z-index: -1;
+      position: relative;
+      animation-name: dipDown;
+      animation-duration: 4s;
+    }
+
+    .img-show {
+      animation-name: show;
+      animation-duration: 2s;
+      animation-delay: 2s;
+    }
+
+    .img-hide {
+      animation-name: hide;
+      animation-duration: 2s;
+      animation-delay: 2s;
+    }
+
+    @keyframes dipDown {
+      0% {top: 0;}
+      50% {top: 125px;}
+      100% {top: 0}
+    }
+
+    @keyframes hide {
+      0% {opacity: 1;}
+      100% {opacity: 0;}
+    }
+
+    @keyframes show {
+      0% {opacity: 0;}
+      100% {opacity: 1;}
+    }
   </style>
 
   <title>TARA</title>
 </head>
 <body>
 <div class="container-fluid p-4 vh-100">
+  <div class="position-relative">
+    <button class="position-absolute top-0 end-0 refresh" onclick="location.reload();">
+      <img class="" src="./img/refresh.svg" alt="Refresh"/>
+    </button>
+  </div>
   <div class="row h-100">
     <div class="col-5 overflow-auto">
       <div class="accordion" id="accordionExample">
@@ -104,9 +155,9 @@
         <div class="flex-grow-1 w-75 mb-5">
           <div class="h-100 d-flex flex-column justify-content-end">
             <div class="d-flex justify-content-around">
-              <div id="boxPaper1" class="boxPaper border border-dark d-none" data-position="0" ondrop="" ondragover="allowDrop(event)"></div>
-              <div id="boxPaper2" class="boxPaper border border-dark d-none" data-position="1" ondrop="" ondragover="allowDrop(event)"></div>
-              <div id="boxPaper3" class="boxPaper border border-dark d-none" data-position="2" ondrop="" ondragover="allowDrop(event)"></div>
+              <div id="boxPaper1" class="boxPaper border border-dark d-none" data-position="0" ondrop="dropPaper(event)" ondragover="allowDrop(event)"></div>
+              <div id="boxPaper2" class="boxPaper border border-dark d-none" data-position="1" ondrop="dropPaper(event)" ondragover="allowDrop(event)"></div>
+              <div id="boxPaper3" class="boxPaper border border-dark d-none" data-position="2" ondrop="dropPaper(event)" ondragover="allowDrop(event)"></div>
             </div>
             <div class="d-flex justify-content-around mt-2">
               <div id="boxBeaker1" class="boxBeaker border border-dark" data-position="0" ondrop="dropBeaker(event)" ondragover="allowDrop(event)"></div>
@@ -133,7 +184,7 @@
 <script>
   let currentlyDragged = "";
 
-  const beakerState = [null, null, null];
+  const state = ["", "", ""];
 
   function allowDrop(ev) {
     if (ev.target.classList.contains("boxBeaker") && currentlyDragged.includes("beaker")
@@ -149,24 +200,62 @@
 
   function dropBeaker(ev) {
     ev.preventDefault();
-    console.log(ev);
     const data = ev.dataTransfer.getData("text");
     const beaker = document.getElementById(data);
     const box = ev.target;
 
     beaker.draggable = false;
     box.classList.remove("border");
-    beakerState[box.dataset.position] = beaker.id;
-    console.log(beakerState);
+    state[box.dataset.position] = beaker.id;
 
-    ev.target.appendChild(document.getElementById(data));
+    box.appendChild(document.getElementById(data));
 
-    if (!beakerState.includes(null)) {
+    if (!state.includes("")) {
       const boxes = document.getElementsByClassName("boxPaper");
       for (let box of boxes) {
         box.classList.remove("d-none");
       }
     }
+  }
+
+  function dropPaper(ev) {
+    ev.preventDefault();
+    const data = ev.dataTransfer.getData("text");
+    const paper = document.getElementById(data);
+    const box = ev.target;
+
+    paper.draggable = false;
+    box.classList.remove("border");
+
+    const beaker = state[box.dataset.position];
+    let newPaper = "";
+
+    switch (beaker) {
+      case "beakerX":
+        newPaper = "paperX";
+        break;
+
+      case "beakerY":
+        newPaper = "paperY";
+        break;
+
+      case "beakerZ":
+        newPaper = "paperZ";
+        break;
+    }
+
+    const newImg = document.createElement("img");
+    newImg.src = `./img/${newPaper}.png`;
+    newImg.classList.add("img-overlay", "img-fluid", "border", "border-warning");
+
+    const oldImg = document.getElementById(data)
+
+    box.appendChild(newImg);
+    box.appendChild(oldImg);
+
+    box.classList.add("dipDown");
+    oldImg.classList.add("img-hide");
+    newImg.classList.add("img-show");
   }
 </script>
 <script src="./js/bootstrap.bundle.js"></script>
